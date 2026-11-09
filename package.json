@@ -1,0 +1,24 @@
+{
+  "name": "currency-pwa-lab6",
+  "version": "1.0.0",
+  "description": "Лабораторная работа №6: сервер Express и PWA с демонстрационными курсами валют",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "icons": "node scripts/create-icons.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "pwa",
+    "laboratory-work"
+  ],
+  "author": "Стулкова Марианна",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
