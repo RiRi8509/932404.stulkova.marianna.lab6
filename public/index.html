@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050507">
+    <meta
+      name="description"
+      content="Демонстрационное PWA-приложение с фиктивными курсами USD, EUR и CNY за неделю."
+    >
+    <title>Курсы валют за неделю</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" href="/assets/chrome-dollar.jpg" as="image">
+    <link rel="icon" href="/icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="stylesheet" href="/style.css?v=2.0.2">
+    <script src="/script.js" defer></script>
+  </head>
+  <body data-page="home">
+    <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="На главную">
+          <span class="brand-mark" aria-hidden="true">$</span>
+          <span>КУРСОМЕТР</span>
+        </a>
+
+        <nav aria-label="Основная навигация">
+          <ul class="nav-list">
+            <li><a class="nav-link is-current" href="/" aria-current="page">Главная</a></li>
+            <li><a class="nav-link" href="/about">О приложении</a></li>
+          </ul>
+        </nav>
+
+        <div id="connection-status" class="connection-status" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Проверка сети</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Вариант 12 / Express + PWA</p>
+          <h1 id="page-title">
+            <span>Курсы валют</span>
+            <span class="title-outline">за неделю</span>
+          </h1>
+          <p class="hero-text">Сравните семь демонстрационных значений и посмотрите средний курс выбранной валюты.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#rates">Смотреть курсы</a>
+            <button id="install-button" class="button button-secondary" type="button" hidden>
+              Установить приложение
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="chrome-art" aria-hidden="true">
+            <img src="/assets/chrome-dollar.jpg" alt="" width="400" height="400">
+          </div>
+          <span class="spark spark-one" aria-hidden="true">✦</span>
+          <span class="spark spark-two" aria-hidden="true">✦</span>
+          <div class="hero-rate">
+            <span>WEEKLY RATE</span>
+            <strong>3 валюты / 7 дней</strong>
+            <small>только демонстрационные данные</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-notice" aria-label="Предупреждение о данных">
+        <strong>Учебные данные.</strong>
+        <span>Все значения фиктивные и не предназначены для финансовых решений.</span>
+      </section>
+
+      <section id="rates" class="rates-section" aria-labelledby="rates-title">
+        <div class="section-heading">
+          <h2 id="rates-title">Выберите валюту</h2>
+          <p>Курс указан в условных рублях за одну единицу валюты.</p>
+        </div>
+
+        <div class="currency-switcher" role="group" aria-label="Выбор валюты">
+          <button class="currency-button is-active" type="button" data-currency="USD" aria-pressed="true">
+            <span class="currency-code">USD</span>
+            <span class="currency-name">Доллар США</span>
+          </button>
+          <button class="currency-button" type="button" data-currency="EUR" aria-pressed="false">
+            <span class="currency-code">EUR</span>
+            <span class="currency-name">Евро</span>
+          </button>
+          <button class="currency-button" type="button" data-currency="CNY" aria-pressed="false">
+            <span class="currency-code">CNY</span>
+            <span class="currency-name">Китайский юань</span>
+          </button>
+        </div>
+
+        <div id="rates-panel" class="rates-layout" aria-live="polite" aria-busy="true">
+          <article class="summary-card">
+            <div>
+              <p class="summary-label">Средний курс</p>
+              <p id="average-rate" class="average-rate">Загрузка</p>
+            </div>
+            <div class="summary-meta">
+              <span id="selected-currency">USD</span>
+              <span>7 значений</span>
+            </div>
+          </article>
+
+          <div class="chart-card">
+            <div class="card-heading">
+              <div>
+                <h3>Динамика курса</h3>
+                <p id="chart-description">Загрузка данных за неделю</p>
+              </div>
+              <span id="trend-value" class="trend-value">0,00</span>
+            </div>
+            <svg
+              id="rate-chart"
+              class="rate-chart"
+              viewBox="0 0 700 260"
+              role="img"
+              aria-labelledby="chart-title chart-desc"
+            >
+              <title id="chart-title">График курса за семь дней</title>
+              <desc id="chart-desc">После загрузки здесь появится линия изменения курса.</desc>
+            </svg>
+          </div>
+
+          <div class="week-card">
+            <div class="card-heading">
+              <div>
+                <h3>Значения по дням</h3>
+                <p>Условная учебная неделя</p>
+              </div>
+            </div>
+            <ol id="rates-list" class="rates-list">
+              <li class="rate-placeholder">Получаем данные с сервера</li>
+            </ol>
+          </div>
+        </div>
+
+        <p id="error-message" class="error-message" role="alert" hidden></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Лабораторная работа №6. Вариант 12.</p>
+      <p>Node.js, Express и Progressive Web App.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050507">
+    <meta
+      name="description"
+      content="Информация об учебном приложении с демонстрационными курсами валют."
+    >
+    <title>О приложении | Курсометр</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="stylesheet" href="/style.css?v=2.0.2">
+    <script src="/script.js" defer></script>
+  </head>
+  <body data-page="about">
+    <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="На главную">
+          <span class="brand-mark" aria-hidden="true">$</span>
+          <span>КУРСОМЕТР</span>
+        </a>
+
+        <nav aria-label="Основная навигация">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="/">Главная</a></li>
+            <li><a class="nav-link is-current" href="/about" aria-current="page">О приложении</a></li>
+          </ul>
+        </nav>
+
+        <div id="connection-status" class="connection-status" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Проверка сети</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="about-page">
+      <section class="about-intro" aria-labelledby="about-title">
+        <div class="about-copy">
+          <p class="eyebrow">О приложении</p>
+          <h1 id="about-title">Учебный сервер и PWA в одном проекте</h1>
+          <p>
+            Курсометр создан для лабораторной работы №6. Он показывает фиктивные значения USD, EUR и CNY, полученные из собственного Express API.
+          </p>
+        </div>
+        <figure class="about-art">
+          <img
+            src="/assets/dollar-bill.jpg"
+            alt="Чёрно-белая стилизованная стодолларовая купюра"
+            width="720"
+            height="720"
+          >
+        </figure>
+      </section>
+
+      <section class="about-grid" aria-label="Возможности проекта">
+        <article class="about-feature">
+          <span class="feature-number">01</span>
+          <h2>Express-сервер</h2>
+          <p>Маршруты отдают HTML-страницы и JSON. Параметр валюты читается через <code>req.params.currency</code>.</p>
+        </article>
+        <article class="about-feature">
+          <span class="feature-number">02</span>
+          <h2>Клиентский интерфейс</h2>
+          <p>Данные загружаются через <code>fetch()</code>, а список, среднее значение и SVG-график обновляются без перезагрузки.</p>
+        </article>
+        <article class="about-feature">
+          <span class="feature-number">03</span>
+          <h2>Офлайн-режим</h2>
+          <p>Service Worker кеширует страницы, ресурсы и ответы API для всех трёх валют после первой успешной подготовки приложения.</p>
+        </article>
+      </section>
+
+      <section class="api-example" aria-labelledby="api-title">
+        <div>
+          <h2 id="api-title">Пример API-запроса</h2>
+          <p>Адрес можно открыть в браузере при запущенном сервере.</p>
+        </div>
+        <code>GET /api/rates/USD</code>
+        <pre><code>{
+  "currency": "USD",
+  "rates": [90.35, 91.1, 90.75, 92.2, 93.05, 92.6, 93.4],
+  "avg": 91.92,
+  "demonstration": true
+}</code></pre>
+      </section>
+
+      <a class="button button-primary about-back" href="/">Вернуться к курсам</a>
+    </main>
+
+    <footer class="site-footer">
+      <p>Лабораторная работа №6. Вариант 12.</p>
+      <p>Все курсы являются демонстрационными.</p>
+    </footer>
+  </body>
+</html>
